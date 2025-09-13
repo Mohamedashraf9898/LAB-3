@@ -4,7 +4,7 @@ function loadProducts() {
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('products');
-      if (!container) return; 
+      if (!container) return;
 
       data.forEach(prod => {
         const div = document.createElement('div');
@@ -23,7 +23,7 @@ function loadProducts() {
 // ------------------- Cart Page -------------------
 function renderCart() {
   const container = document.getElementById('cart');
-  if (!container) return; 
+  if (!container) return;
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   container.innerHTML = '';
@@ -65,7 +65,7 @@ function addToCart(id, title, price, image) {
   }
 
   localStorage.setItem('cart', JSON.stringify(cart));
-  window.location.href = "cart.html";
+  window.location.href = "cart.html";  
 }
 
 function updateQuantity(index, change) {
@@ -100,7 +100,7 @@ function purchase() {
 }
 
 function continueShopping() {
-  window.location.href = "index.html";
+  window.location.href = "product.html";   
 }
 
 // ------------------- Auto Load -------------------
