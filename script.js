@@ -65,7 +65,7 @@ function addToCart(id, title, price, image) {
   }
 
   localStorage.setItem('cart', JSON.stringify(cart));
-  window.location.href = "cart.html";   // ✅ الكارت
+  window.location.href = "cart.html";   
 }
 
 function updateQuantity(index, change) {
