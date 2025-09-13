@@ -100,7 +100,7 @@ function purchase() {
 }
 
 function continueShopping() {
-  window.location.href = "product.html";
+  window.location.href = "index.html";
 }
 
 // ------------------- Auto Load -------------------
