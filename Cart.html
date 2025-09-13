@@ -3,155 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Cart</title>
-  <!-- نفس الفونت -->
+
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f7fa;
-    }
-    /* Logo */
-    .logo {
-      background: #1e293b;
-      color: #38bdf8;
-      font-size: 28px;
-      padding: 15px 30px;
-      text-align: left;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      font-family: 'Pacifico', cursive;
-      letter-spacing: 1px;
-    }
-    /* Blue Bar Title */
-    .page-title {
-      background: #2563eb;
-      color: white;
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      padding: 12px 0;
-      margin: 0;
-    }
-    #cart {
-      padding: 30px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .item img {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      margin-right: 15px;
-    }
-    .info {
-      flex: 1;
-    }
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    button {
-      background: #1e40af;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #2563eb;
-    }
-    .actions {
-      text-align: center;
-      margin-top: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Logo -->
-  <div class="logo">🛍 ElDayra Store</div>
-  
-  <!-- Blue Title Bar -->
-  <div class="page-title">Your Cart</div>
 
-  <!-- Cart Items -->
+  <div class="header-bar">
+    <div class="logo">🛍 ElDayra Store</div>
+    <div class="page-title">Your Cart</div>
+  </div>
+
+
   <div id="cart"></div>
 
-  <!-- Actions -->
   <div class="actions">
     <button onclick="purchase()">Purchase</button>
     <button onclick="continueShopping()">Continue Shopping</button>
   </div>
 
-  <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const container = document.getElementById('cart');
-    renderCart();
-
-    function renderCart() {
-      container.innerHTML = '';
-      cart.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.innerHTML = `
-          <img src="${item.image}" alt="${item.title}">
-          <div class="info">
-            <h4>${item.title}</h4>
-            <p>$${(item.price * item.quantity).toFixed(2)} (${item.quantity} pcs)</p>
-          </div>
-          <div class="controls">
-            <button onclick="updateQuantity(${index}, -1)">-</button>
-            <span>${item.quantity}</span>
-            <button onclick="updateQuantity(${index}, 1)">+</button>
-            <button onclick="removeItem(${index})">Remove</button>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function updateQuantity(index, change) {
-      cart[index].quantity += change;
-      if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
-      }
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    function removeItem(index) {
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    function purchase() {
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-      alert("Cart purchased successfully!");
-      cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    function continueShopping() {
-      window.location.href = "product.html";
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
